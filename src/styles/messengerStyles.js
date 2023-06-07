@@ -9,3 +9,9 @@ export const Header = styled(AppBar)`
   background-color: #00bfa5;
   height: 220px;
 `;
+
+export const ChatHeader = styled(AppBar)`
+  box-shadow: none;
+  background-color: #00a884;
+  height: 125px;
+`;

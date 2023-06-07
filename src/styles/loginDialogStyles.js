@@ -1,9 +1,9 @@
 import { styled, Box, Typography, List } from "@mui/material";
 
 export const dialogStyle = {
-  height: "95%",
+  height: "96%",
   maxHeight: "100%",
-  width: "65%",
+  width: "70%",
   maxWidth: "100%",
   marginTop: "12%",
   overflow: "hidden",
@@ -16,6 +16,10 @@ export const Component = styled(Box)`
 
 export const Container = styled(Box)`
   margin-top: 56px;
+`;
+
+export const RightSideWrapper = styled(Box)`
+  position: relative;
 `;
 
 export const QrCode = styled("img")({

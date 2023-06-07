@@ -1,22 +1,24 @@
-import { Dialog, Box, ListItem } from '@mui/material'
-import React from 'react'
+import { Dialog, ListItem } from '@mui/material'
+import React, { useContext } from 'react'
 import jwtDecode from 'jwt-decode';
 import { GoogleLogin } from '@react-oauth/google';
-import { dialogStyle, Component, Container, QrCode, GLogin, Title, StyledList } from '../../styles/loginDialogStyles';
+import { dialogStyle, Component, Container, QrCode, GLogin, Title, StyledList, RightSideWrapper } from '../../styles/loginDialogStyles';
 import { qrCodeImage } from '../../constants/data'
+import { AuthContext } from '../../context/AccountProvider';
 
 const LoginDialog = () => {
+    const { setAccount } = useContext(AuthContext);
     const onLoginSuccess = credentialResponse => {
-        console.log(credentialResponse);
         const decode = jwtDecode(credentialResponse.credential);
-        console.log(decode);
+        setAccount(decode);
+        window.localStorage.setItem('account', JSON.stringify(decode));
     }
     const onLoginFailure = () => {
         console.log('Login Failed');
     }
 
   return (
-    <Dialog open={true} PaperProps = {{ sx: dialogStyle }}>
+    <Dialog open={true} PaperProps = {{ sx: dialogStyle }} hideBackdrop>
         <Component>
             <Container>
                 <Title>Use WhatsApp on your computer</Title>
@@ -32,7 +34,7 @@ const LoginDialog = () => {
                     </ListItem>
                 </StyledList>
             </Container>
-            <Box style={{position: 'relative'}}>
+            <RightSideWrapper>
                 <QrCode src={qrCodeImage} alt='qr code' />
                 <GLogin>
                     <GoogleLogin
@@ -40,7 +42,7 @@ const LoginDialog = () => {
                         onError={onLoginFailure}
                     />
                 </GLogin>
-            </Box>
+            </RightSideWrapper>
         </Component>
     </Dialog>
   )

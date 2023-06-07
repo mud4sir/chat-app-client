@@ -1,16 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Toolbar } from '@mui/material'
 import LoginDialog from './account/LoginDialog'
-import { Component, Header } from '../styles/messengerStyles'
+import { Component, Header, ChatHeader } from '../styles/messengerStyles'
+import { AuthContext } from '../context/AccountProvider';
+import ChatDialog from './chat/ChatDialog';
 
 const Messenger = () => {
+  const { account } = useContext(AuthContext);
+  
   return (
     <Component>
-        <Header>
-            <Toolbar>
-            </Toolbar>
-        </Header>
-        <LoginDialog />
+      {
+        account ? 
+          <>
+            <ChatHeader>
+              <Toolbar>
+              </Toolbar>
+            </ChatHeader>
+            <ChatDialog />
+          </>
+        : <>
+            <Header>
+              <Toolbar>
+              </Toolbar>
+            </Header>
+            <LoginDialog />
+         </>
+      }
     </Component>
   )
 }
