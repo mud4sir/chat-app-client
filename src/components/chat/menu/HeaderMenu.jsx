@@ -4,7 +4,7 @@ import { Menu } from '@mui/material';
 import { MenuOption } from '../../../styles/headerMenuStyles';
 import { AuthContext } from '../../../context/AccountProvider';
 
-const HeaderMenu = () => {
+const HeaderMenu = ({toggleDrawer}) => {
   const { setAccount } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -13,6 +13,7 @@ const HeaderMenu = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    toggleDrawer();
   };
 
   const handleLogout = () => {

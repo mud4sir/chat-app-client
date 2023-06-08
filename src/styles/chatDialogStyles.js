@@ -13,6 +13,7 @@ export const dialogStyle = {
 
 export const Component = styled(Box)`
   display: flex;
+  width: 100%;
 `;
 
 export const MenuWrapper = styled(Box)`
